@@ -9,13 +9,34 @@
 "
 " EXAMPLES are available in /usr/local/doc/startups.
 "
-
+" --- Plugin list:
+"       winManager
+"           |- tagList 
+"               |- ctags (copy .vim into $HOME/.vim/plugin or try sudo apt-get install)
+"       easyColour
+"       tagHighlight
 
 "--------------------------------------------------------------------------------------------------------------
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 "--------------------------------------------------------------------------------------------------------------
+"set term=ansi
+syntax enable
+syntax on
+
 set nocompatible
+
+"--------------------------------------------------------------------------------------------------------------
+" EasyColour
+"--------------------------------------------------------------------------------------------------------------
+"let colors_name="bandit"
+"hi Normal guibg=DarkBlue guifg=White ctermbg=4 
+hi Statement ctermfg=3 gui=undercurl guifg=Yellow guibg=#f6e8d0 guisp=Red 
+hi Keyword guifg=DarkBlue ctermfg=DarkBlue
+hi Comment guifg=blue ctermfg=cyan gui=Bold cterm=bold 
+hi PreProc ctermfg=magenta cterm=bold guifg=#FF00FF
+hi Identifier ctermfg=DarkBlue cterm=bold guifg=BLUE
+hi Constant ctermfg=cyan cterm=bold guifg=red
 
 "--------------------------------------------------------------------------------------------------------------
 " allow backspacing over everything in insert mode
@@ -37,9 +58,6 @@ endif
 if has("autocmd")
   filetype indent on
 endif
-
-syntax enable
-syntax on
 
 set number
 set title
@@ -115,7 +133,13 @@ nnoremap ,q :q<CR>
 
 
 "--------------------------------------------------------------------------------------------------------------
-" WinManager and buffer switching
+" ctags, tagList, winManager and vim buffer switching
+"
+"   Before installing winManager, should do "ctags -R" firstly building the ctags list.
+"   <c-]> would navigate to the function definition.
+"   <c-t> return back again to function call
+"   :ta /^get   // navigate through a list of function names which start with 'get'
+"   :ts         // shows the list
 "--------------------------------------------------------------------------------------------------------------
 let Tlist_Show_One_File=1
 let Tlist_Exit_OnlyWindow=1
@@ -369,27 +393,27 @@ au FileType python setlocal tabstop=8 expandtab shiftwidth=4 softtabstop=4
 set nocompatible               " be iMproved
 filetype off                   " required!
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-
-" let Vundle manage Vundle
-" required! 
-Bundle 'gmarik/vundle'
-
-" My Bundles here:
+"set rtp+=~/.vim/bundle/vundle/
+"call vundle#rc()
 "
-" original repos on github
-Bundle 'tpope/vim-fugitive'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-Bundle 'tpope/vim-rails.git'
-" vim-scripts repos
-Bundle 'L9'
-Bundle 'FuzzyFinder'
-Bundle 'Valloric/YouCompleteMe'
-" non github repos
-Bundle 'git://git.wincent.com/command-t.git'
-" ...
+"" let Vundle manage Vundle
+"" required! 
+"Bundle 'gmarik/vundle'
+"
+"" My Bundles here:
+""
+"" original repos on github
+"Bundle 'tpope/vim-fugitive'
+"Bundle 'Lokaltog/vim-easymotion'
+"Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+"Bundle 'tpope/vim-rails.git'
+"" vim-scripts repos
+"Bundle 'L9'
+"Bundle 'FuzzyFinder'
+"Bundle 'Valloric/YouCompleteMe'
+"" non github repos
+"Bundle 'git://git.wincent.com/command-t.git'
+"" ...
 
 filetype plugin indent on     " required!
 "
