@@ -1,20 +1,19 @@
+" " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " "
 "
-" ~/.vimrc
+" This is Silao's (writecoffee) Vim initialization file.
 "
-" This is your Vim initialization file. It is read on Vim startup.
-"
-" Change this file to customize your Vim settings.
-" 
-" Vim treats lines beginning with " as comments.
-"
-" EXAMPLES are available in /usr/local/doc/startups.
 "
 " --- Plugin list:
+"       Vundle
+"       YouCompleteMe
 "       winManager
 "           |- tagList 
 "               |- ctags (copy .vim into $HOME/.vim/plugin or try sudo apt-get install)
 "       easyColour
 "       tagHighlight
+"
+"
+" " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " "
 
 "--------------------------------------------------------------------------------------------------------------
 " Use Vim settings, rather then Vi settings (much better!).
@@ -390,38 +389,41 @@ set pastetoggle=<F2>
 
 au FileType python setlocal tabstop=8 expandtab shiftwidth=4 softtabstop=4
 
-set nocompatible               " be iMproved
-filetype off                   " required!
-
-"set rtp+=~/.vim/bundle/vundle/
-"call vundle#rc()
-"
-"" let Vundle manage Vundle
-"" required! 
-"Bundle 'gmarik/vundle'
-"
-"" My Bundles here:
-""
-"" original repos on github
-"Bundle 'tpope/vim-fugitive'
-"Bundle 'Lokaltog/vim-easymotion'
-"Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-"Bundle 'tpope/vim-rails.git'
-"" vim-scripts repos
-"Bundle 'L9'
-"Bundle 'FuzzyFinder'
-"Bundle 'Valloric/YouCompleteMe'
-"" non github repos
-"Bundle 'git://git.wincent.com/command-t.git'
-"" ...
-
-filetype plugin indent on     " required!
+"--------------------------------------------------------------------------------------------------------------
+" Vundle
 "
 " Brief help
-" :BundleList          - list configured bundles
-" :BundleInstall(!)    - install(update) bundles
-" :BundleSearch(!) foo - search(or refresh cache first) for foo
-" :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
+"   :BundleList          - list configured bundles
+"   :BundleInstall(!)    - install(update) bundles
+"   :BundleSearch(!) foo - search(or refresh cache first) for foo
+"   :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
 "
 " see :h vundle for more details or wiki for FAQ
 " NOTE: comments after Bundle command are not allowed..
+"--------------------------------------------------------------------------------------------------------------
+set nocompatible               " be iMproved
+filetype off                   " required!
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle
+" required! 
+Bundle 'gmarik/vundle'
+
+" My Bundles here:
+"
+" original repos on github
+Bundle 'tpope/vim-fugitive'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+Bundle 'tpope/vim-rails.git'
+" vim-scripts repos
+Bundle 'L9'
+Bundle 'FuzzyFinder'
+" non github repos
+Bundle 'git://git.wincent.com/command-t.git'
+Bundle 'Valloric/YouCompleteMe'
+" ...
+
+filetype plugin indent on     " required!
