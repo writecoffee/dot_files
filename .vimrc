@@ -26,6 +26,46 @@ syntax on
 set nocompatible
 
 "--------------------------------------------------------------------------------------------------------------
+" Vundle
+"
+" Brief help
+"   :BundleList          - list configured bundles
+"   :BundleInstall(!)    - install(update) bundles
+"   :BundleSearch(!) foo - search(or refresh cache first) for foo
+"   :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
+"
+" see :h vundle for more details or wiki for FAQ
+" NOTE: comments after Bundle command are not allowed..
+"--------------------------------------------------------------------------------------------------------------
+set nocompatible               " be iMproved
+filetype off                   " required!
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle
+" required! 
+Bundle 'gmarik/vundle'
+
+" My Bundles here:
+"
+" original repos on github
+Bundle 'tpope/vim-fugitive'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+Bundle 'tpope/vim-rails.git'
+" vim-scripts repos
+Bundle 'L9'
+Bundle 'FuzzyFinder'
+" non github repos
+Bundle 'git://git.wincent.com/command-t.git'
+Bundle 'Valloric/YouCompleteMe'
+Bundle 'vim-scripts/grep.vim'
+" ...
+
+filetype plugin indent on     " required!
+
+"--------------------------------------------------------------------------------------------------------------
 " EasyColour
 "--------------------------------------------------------------------------------------------------------------
 "let colors_name="bandit"
@@ -95,7 +135,9 @@ nnoremap <silent><F9> :WMClose<CR> :tab split<CR>
 " Press F3 to Grep
 "   :AS " split the window horizontally
 "--------------------------------------------------------------------------------------------------------------
-let Grep_Default_Filelist='*.c *.h *.cpp'
+au filetype java let Grep_Default_Filelist='*.java'
+au filetype c let Grep_Default_Filelist='*.c *.h *.cpp'
+au filetype python let Grep_Default_Filelist='*.py'
 nnoremap <silent> <F3> :Rgrep<CR>
 
 "--------------------------------------------------------------------------------------------------------------
@@ -118,9 +160,9 @@ noremap <F4> :set hlsearch! hlsearch?<CR>
 
 
 "--------------------------------------------------------------------------------------------------------------
-" Press F7 to compile and show errors 
+" Press F7 to compile/build and show errors 
 "--------------------------------------------------------------------------------------------------------------
-noremap <F7> :w<CR> :make<CR> :cw<CR>
+au filetype c noremap <F7> :w<CR> :make<CR> :cw<CR>
 
 
 "--------------------------------------------------------------------------------------------------------------
@@ -389,41 +431,3 @@ set pastetoggle=<F2>
 
 au FileType python setlocal tabstop=8 expandtab shiftwidth=4 softtabstop=4
 
-"--------------------------------------------------------------------------------------------------------------
-" Vundle
-"
-" Brief help
-"   :BundleList          - list configured bundles
-"   :BundleInstall(!)    - install(update) bundles
-"   :BundleSearch(!) foo - search(or refresh cache first) for foo
-"   :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
-"
-" see :h vundle for more details or wiki for FAQ
-" NOTE: comments after Bundle command are not allowed..
-"--------------------------------------------------------------------------------------------------------------
-set nocompatible               " be iMproved
-filetype off                   " required!
-
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-
-" let Vundle manage Vundle
-" required! 
-Bundle 'gmarik/vundle'
-
-" My Bundles here:
-"
-" original repos on github
-Bundle 'tpope/vim-fugitive'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-Bundle 'tpope/vim-rails.git'
-" vim-scripts repos
-Bundle 'L9'
-Bundle 'FuzzyFinder'
-" non github repos
-Bundle 'git://git.wincent.com/command-t.git'
-Bundle 'Valloric/YouCompleteMe'
-" ...
-
-filetype plugin indent on     " required!
