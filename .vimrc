@@ -11,7 +11,8 @@
 "               |- ctags (copy .vim into $HOME/.vim/plugin or try sudo apt-get install)
 "       easyColour
 "       tagHighlight
-"
+"       cscope
+"       eclim
 "
 " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " "
 
@@ -62,6 +63,7 @@ Bundle 'git://git.wincent.com/command-t.git'
 " Bundle 'Valloric/YouCompleteMe'
 Bundle 'vim-scripts/grep.vim'
 Bundle 'vim-scripts/Conque-Shell'
+Bundle 'vim-scripts/cscope.vim'
 " ...
 
 filetype plugin indent on     " required!
