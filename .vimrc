@@ -62,6 +62,46 @@ Bundle 'git://git.wincent.com/command-t.git'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'vim-scripts/grep.vim'
 " ...
+"
+The following mappings are active when the prompt has focus:
+
+
+"--------------------------------------------------------------------------------------------------------------
+"  Command-T
+"
+"   <BS>        delete the character to the left of the cursor
+"   <Del>       delete the character at the cursor
+"   <Left>      move the cursor one character to the left
+"   <C-h>       move the cursor one character to the left
+"   <Right>     move the cursor one character to the right
+"   <C-l>       move the cursor one character to the right
+"   <C-a>       move the cursor to the start (left)
+"   <C-e>       move the cursor to the end (right)
+"   <C-u>       clear the contents of the prompt
+"   <Tab>       change focus to the file listing
+"
+"   The following mappings are active when the file listing has focus:
+"
+"   <Tab>       change focus to the prompt
+"
+"   The following mappings are active when either the prompt or the file listing
+"   has focus:
+"
+"   <CR>        open the selected file
+"   <C-CR>      open the selected file in a new split window
+"   <C-s>       open the selected file in a new split window
+"   <C-v>       open the selected file in a new vertical split window
+"   <C-t>       open the selected file in a new tab
+"   <C-j>       select next file in the file listing
+"   <C-n>       select next file in the file listing
+"   <Down>      select next file in the file listing
+"   <C-k>       select previous file in the file listing
+"   <C-p>       select previous file in the file listing
+"   <Up>        select previous file in the file listing
+"   <C-f>       flush the cache (see |:CommandTFlush| for details)
+"   <C-c>       cancel (dismisses file listing)
+"--------------------------------------------------------------------------------------------------------------
+
 
 filetype plugin indent on     " required!
 
