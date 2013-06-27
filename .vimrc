@@ -11,7 +11,8 @@
 "               |- ctags (copy .vim into $HOME/.vim/plugin or try sudo apt-get install)
 "       easyColour
 "       tagHighlight
-"
+"       cscope
+"       eclim
 "
 " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " "
 
@@ -59,8 +60,10 @@ Bundle 'L9'
 Bundle 'FuzzyFinder'
 " non github repos
 Bundle 'git://git.wincent.com/command-t.git'
-Bundle 'Valloric/YouCompleteMe'
+" Bundle 'Valloric/YouCompleteMe'
 Bundle 'vim-scripts/grep.vim'
+Bundle 'vim-scripts/Conque-Shell'
+Bundle 'vim-scripts/cscope.vim'
 " ...
 "
 The following mappings are active when the prompt has focus:
@@ -206,7 +209,13 @@ au filetype c noremap <F7> :w<CR> :make<CR> :cw<CR>
 
 
 "--------------------------------------------------------------------------------------------------------------
-" ConqueTerminal shortcuts to open a new bash buffer
+" Conque-Shell (Conquer Terminal) 
+"
+"   :ConqueTerm bash
+"   :ConqueTerm tab
+"   :ConqueTerm mysql -h localhost -u joe -p sock_collection
+"   :ConqueTerm Powershell.exe
+"   :ConqueTerm C:\Python27\python.exe
 "--------------------------------------------------------------------------------------------------------------
 nnoremap ,c :ConqueTermSplit bash<CR>
 nnoremap ,vc :ConqueTermVSplit bash<CR>
@@ -469,5 +478,15 @@ set tags+=./tags
 
 set pastetoggle=<F2>
 
-au FileType python setlocal tabstop=8 expandtab shiftwidth=4 softtabstop=4
+au FileType python setlocal tabstop=4 expandtab shiftwidth=4 softtabstop=4
+au FileType xml setlocal tabstop=2 expandtab shiftwidth=2 softtabstop=2
 
+"--------------------------------------------------------------------------------------------------------------
+" eclim
+"
+" Suggested Mappings for java functionaities provided by eclim.
+"
+"-------------------------------------------------------------------------------------------------------------
+nnoremap <silent> <buffer> <leader>i :JavaImport<cr>
+nnoremap <silent> <buffer> <leader>d :JavaDocSearch -x declarations<cr>
+nnoremap <silent> <buffer> <cr> :JavaSearchContext<cr>
