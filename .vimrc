@@ -7,12 +7,13 @@
 "       Vundle
 "       YouCompleteMe
 "       winManager
-"           |- tagList 
+"           |- tagList (out-of-date)
 "               |- ctags (copy .vim into $HOME/.vim/plugin or try sudo apt-get install)
+"           |- miniBuffer
+"           |- nerdtree
 "       easyColour
 "       tagHighlight
-"       cscope
-"       eclim
+"       CommandT
 "
 " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " "
 
@@ -60,17 +61,16 @@ Bundle 'L9'
 Bundle 'FuzzyFinder'
 " non github repos
 Bundle 'git://git.wincent.com/command-t.git'
-" Bundle 'Valloric/YouCompleteMe'
+Bundle 'Valloric/YouCompleteMe'
 Bundle 'vim-scripts/grep.vim'
-Bundle 'vim-scripts/Conque-Shell'
-Bundle 'vim-scripts/cscope.vim'
-" ...
-"
-The following mappings are active when the prompt has focus:
+Bundle 'scrooloose/nerdtree'
+Bundle 'fholgado/minibufexpl.vim'
 
 
 "--------------------------------------------------------------------------------------------------------------
 "  Command-T
+"
+"   The following mappings are active when the prompt has focus:
 "
 "   <BS>        delete the character to the left of the cursor
 "   <Del>       delete the character at the cursor
@@ -209,13 +209,7 @@ au filetype c noremap <F7> :w<CR> :make<CR> :cw<CR>
 
 
 "--------------------------------------------------------------------------------------------------------------
-" Conque-Shell (Conquer Terminal) 
-"
-"   :ConqueTerm bash
-"   :ConqueTerm tab
-"   :ConqueTerm mysql -h localhost -u joe -p sock_collection
-"   :ConqueTerm Powershell.exe
-"   :ConqueTerm C:\Python27\python.exe
+" ConqueTerminal shortcuts to open a new bash buffer
 "--------------------------------------------------------------------------------------------------------------
 nnoremap ,c :ConqueTermSplit bash<CR>
 nnoremap ,vc :ConqueTermVSplit bash<CR>
@@ -223,7 +217,7 @@ nnoremap ,q :q<CR>
 
 
 "--------------------------------------------------------------------------------------------------------------
-" ctags, tagList, winManager and vim buffer switching
+" ctags, tagList, winManager, nerdtree and vim buffer switching
 "
 "   Before installing winManager, should do "ctags -R" firstly building the ctags list.
 "   <c-]> would navigate to the function definition.
@@ -231,15 +225,34 @@ nnoremap ,q :q<CR>
 "   :ta /^get   // navigate through a list of function names which start with 'get'
 "   :ts         // shows the list
 "--------------------------------------------------------------------------------------------------------------
-let Tlist_Show_One_File=1
-let Tlist_Exit_OnlyWindow=1
-let g:winManagerWindowLayout='FileExplorer|TagList'
-nmap WM :WMToggle<cr>
+" let Tlist_Show_One_File=1
+" let Tlist_Exit_OnlyWindow=1
+" let g:winManagerWindowLayout='FileExplorer|TagList'
+" nmap WM :WMToggle<cr>
 map <c-w><c-t> :FirstExplorerWindow<cr>
 map <c-w><c-f> <c-w><c-t><c-w><c-j>
 map <c-w><c-b> :BottomExplorerWindow<cr>
 map <c-w><c-n> :bn<cr>
 map <c-w><c-p> :bp<cr>
+
+let g:miniBufExplMapWindowNavVim = 1 
+let g:miniBufExplMapWindowNavArrows = 1 
+let g:miniBufExplMapCTabSwitchBufs = 1 
+let g:miniBufExplModSelTarget = 1
+let g:miniBufExplMoreThanOne=0
+
+let g:NERDTree_title="[NERDTree]"
+let g:winManagerWindowLayout="NERDTree|TagList"
+
+function! NERDTree_Start()
+    exec 'NERDTree'
+endfunction
+
+function! NERDTree_IsValid()
+    return 1
+endfunction
+
+nmap WM :WMToggle<CR>
 
 
 "--------------------------------------------------------------------------------------------------------------
@@ -478,15 +491,5 @@ set tags+=./tags
 
 set pastetoggle=<F2>
 
-au FileType python setlocal tabstop=4 expandtab shiftwidth=4 softtabstop=4
-au FileType xml setlocal tabstop=2 expandtab shiftwidth=2 softtabstop=2
+au FileType python setlocal tabstop=8 expandtab shiftwidth=4 softtabstop=4
 
-"--------------------------------------------------------------------------------------------------------------
-" eclim
-"
-" Suggested Mappings for java functionaities provided by eclim.
-"
-"-------------------------------------------------------------------------------------------------------------
-nnoremap <silent> <buffer> <leader>i :JavaImport<cr>
-nnoremap <silent> <buffer> <leader>d :JavaDocSearch -x declarations<cr>
-nnoremap <silent> <buffer> <cr> :JavaSearchContext<cr>
