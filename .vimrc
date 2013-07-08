@@ -14,6 +14,7 @@
 "       easyColour
 "       tagHighlight
 "       CommandT
+"       vim-airline
 "
 " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " "
 
@@ -24,6 +25,10 @@
 "set term=ansi
 syntax enable
 syntax on
+
+if $COLORTERM == 'gnome-terminal'
+    set t_Co=256
+endif
 
 set nocompatible
 
@@ -65,6 +70,7 @@ Bundle 'Valloric/YouCompleteMe'
 Bundle 'vim-scripts/grep.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'fholgado/minibufexpl.vim'
+Bundle 'bling/vim-airline'
 
 
 "--------------------------------------------------------------------------------------------------------------
@@ -374,7 +380,13 @@ if has("cscope")
     nmap <C-@><C-@>d :vert scs find d <C-R>=expand("<cword>")<CR><CR>
 endif
 
-
+" MiniBufExpl Colors
+hi MBENormal               guifg=#808080 guibg=fg
+hi MBEChanged              guifg=#CD5907 guibg=fg
+hi MBEVisibleNormal        guifg=#5DC2D6 guibg=fg
+hi MBEVisibleChanged       guifg=#F1266F guibg=fg
+hi MBEVisibleActiveNormal  guifg=#A6DB29 guibg=fg
+hi MBEVisibleActiveChanged guifg=#F1266F guibg=fg
 
 
 
