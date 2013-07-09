@@ -66,7 +66,7 @@ Bundle 'L9'
 Bundle 'FuzzyFinder'
 " non github repos
 Bundle 'git://git.wincent.com/command-t.git'
-Bundle 'Valloric/YouCompleteMe'
+"Bundle 'Valloric/YouCompleteMe'
 Bundle 'vim-scripts/grep.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'fholgado/minibufexpl.vim'
@@ -190,29 +190,53 @@ au filetype python let Grep_Default_Filelist='*.py'
 nnoremap <silent> <F3> :Rgrep<CR>
 
 "--------------------------------------------------------------------------------------------------------------
-" Press F5 to switch between .c and .h file
-"   :AS " split the window horizontally
-"   :AV " split the window vertically
-"   :AT " new tab 
-"--------------------------------------------------------------------------------------------------------------
-
-nnoremap <silent><F5> :A <CR>
-nmap ,s :find %:t:r.c<CR>
-nmap ,S :sf %:t:r.c<CR>
-nmap ,h :find %:t:r.h<CR>
-nmap ,H :sf %:t:r.h<CR>
-
-"--------------------------------------------------------------------------------------------------------------
 " Press F4 to toggle highlighting on/off, and show current value.
 "--------------------------------------------------------------------------------------------------------------
 noremap <F4> :set hlsearch! hlsearch?<CR>
 
+"--------------------------------------------------------------------------------------------------------------
+" Press F5 
+"
+" C files -- to switch between .c and .h file
+"   :AS " split the window horizontally
+"   :AV " split the window vertically
+"   :AT " new tab 
+"
+" Java files -- 
+"--------------------------------------------------------------------------------------------------------------
+
+nnoremap <silent><F5> :A <CR>
+
+" nmap ,s :find %:t:r.c<CR>
+" nmap ,S :sf %:t:r.c<CR>
+" nmap ,h :find %:t:r.h<CR>
+" nmap ,H :sf %:t:r.h<CR>
+
+"--------------------------------------------------------------------------------------------------------------
+" Press F6
+"
+" Java Files --
+"   +o Import undefined types, remove unused imports, sort and format imports.
+"   +i View implementation/overridable methods from super classes and implemented interface
+"   +h View the type hierarchy tree
+"--------------------------------------------------------------------------------------------------------------
+au filetype java nnoremap <F6>o :JavaImportOrganize<CR>
+au filetype java nnoremap <F6>i :JavaImpl<CR>
+au filetype java nnoremap <F6>h :JavaHierarchy<CR>
+au filetype java nnoremap <F6>sd :JavaSearchDoc<CR>
 
 "--------------------------------------------------------------------------------------------------------------
 " Press F7 to compile/build and show errors 
 "--------------------------------------------------------------------------------------------------------------
 au filetype c noremap <F7> :w<CR> :make<CR> :cw<CR>
 
+"--------------------------------------------------------------------------------------------------------------
+" Press F8 
+"
+" Java files --
+"   JavaSearch
+"--------------------------------------------------------------------------------------------------------------
+au filetype java nnoremap <F8> :JavaSearch
 
 "--------------------------------------------------------------------------------------------------------------
 " ConqueTerminal shortcuts to open a new bash buffer
@@ -220,6 +244,7 @@ au filetype c noremap <F7> :w<CR> :make<CR> :cw<CR>
 nnoremap ,c :ConqueTermSplit bash<CR>
 nnoremap ,vc :ConqueTermVSplit bash<CR>
 nnoremap ,q :q<CR>
+nnoremap ,s :w<CR>
 
 
 "--------------------------------------------------------------------------------------------------------------
