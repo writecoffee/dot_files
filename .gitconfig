@@ -4,60 +4,61 @@
     safecrlf = true
     whitespace=fix,-indent-with-non-tab, trailing-space,cr-at-eol
 [user]
-	name = writecoffee
-	email = writecoffee@gmail.com
+    name = writecoffee
+    email = writecoffee@gmail.com
 [color]
-	diff = auto
-	status = auto
-	branch = auto
-	ui = auto
+    diff = auto
+    status = auto
+    branch = auto
+    ui = auto
 [color "diff"]
-	meta = yellow bold
-	frag = magenta
-	old = red
-	new = green
-	whitespace = red reverse
+    meta = yellow bold
+    frag = magenta
+    old = red
+    new = green
+    whitespace = red reverse
 [alias]
-	ai = add --interactive
-	br = branch
-	ci = commit
-	co = checkout
-	d = diff
-	ds = diff --staged
-	dh = diff --staged # stands for diff head & that is not same, but o well
-	st = status -s
-	lol = log --pretty=oneline --abbrev-commit --decorate --color
-	lob = log --pretty=oneline --abbrev-commit --graph --decorate --color --branches
-	loa = log --pretty=oneline --abbrev-commit --graph --decorate --color --all
-	lop = log -p
-	ls = ls-files
-	unstage = reset HEAD
-	uncommit = reset --soft # include a hash at the end!
-	amend = commit --amend
-	ammend = commit --amend
-	wc = whatchanged
-	ls-ignored = ls-files --exclude-standard --ignored --others
-	# diff that highlights the changed lines, and ALSO changed words and chars
-	# git wds does the same for staged changes.
-	wd = diff --color-words
-	wds = diff --color-words --staged
-	prp = !git pr && git push
-	# via http://pyrtsa.posterous.com/aligning-your-git-logs
-	l50 = "!git log --abbrev-commit --date=short --pretty=format:'%x00%h%x00%cd%x00%s%x00%an%x00%d' | gawk -F '\\0' '{ printf \"%s\\033[31m%s\\033[0m \\033[32m%s\\033[0m  %-50s \\033[30;1m%s\\033[0m\\033[33m%s\\n\", $1, $2, $3, gensub(/(.{49}).{2,}/, \"\\\\1…\",\"g\",$4), $5, $6 }' | less -R"
-	l80 = "!git log --abbrev-commit --date=short --pretty=format:'%x00%h%x00%cd%x00%s%x00%an%x00%d' | gawk -F '\\0' '{ printf \"%s\\033[31m%s\\033[0m \\033[32m%s\\033[0m  %-80s \\033[30;1m%s\\033[0m\\033[33m%s\\n\", $1, $2, $3, gensub(/(.{79}).{2,}/, \"\\\\1…\",\"g\",$4), $5, $6 }' | less -R"
-	lg50 = "!git log --graph --color=always --abbrev-commit --date=relative --pretty=format:'%x00%h%x00%s%x00%cd%x00%an%x00%d' | gawk -F '\\0' '{ printf \"%s\\033[31m%s\\033[0m %-50s \\033[32m%14s\\033[0m \\033[30;1m%s\\033[0m\\033[33m%s\\n\", $1, $2, gensub(/(.{49}).{2,}/, \"\\\\1…\",\"g\",$3), $4, $5, $6 }' | less -R"
-	lg80 = "!git log --graph --color=always --abbrev-commit --date=relative --pretty=format:'%x00%h%x00%s%x00%cd%x00%an%x00%d' | gawk -F '\\0' '{ printf \"%s\\033[31m%s\\033[0m %-80s \\033[32m%14s\\033[0m \\033[30;1m%s\\033[0m\\033[33m%s\\n\", $1, $2, gensub(/(.{79}).{2,}/, \"\\\\1…\",\"g\",$3), $4, $5, $6 }' | less -R"
+    ai = add --interactive
+    br = branch
+    ci = commit
+    co = checkout
+    d = diff
+    ds = diff --staged
+    dh = diff --staged # stands for diff head & that is not same, but o well
+    st = status -s
+    lol = log --pretty=oneline --abbrev-commit --decorate --color
+    lob = log --pretty=oneline --abbrev-commit --graph --decorate --color --branches
+    loc = git log --all --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+    loa = log --pretty=oneline --abbrev-commit --graph --decorate --color --all
+    lop = log -p
+    ls = ls-files
+    unstage = reset HEAD
+    uncommit = reset --soft # include a hash at the end!
+    amend = commit --amend
+    ammend = commit --amend
+    wc = whatchanged
+    ls-ignored = ls-files --exclude-standard --ignored --others
+    # diff that highlights the changed lines, and ALSO changed words and chars
+    # git wds does the same for staged changes.
+    wd = diff --color-words
+    wds = diff --color-words --staged
+    prp = !git pr && git push
+    # via http://pyrtsa.posterous.com/aligning-your-git-logs
+    l50 = "!git log --abbrev-commit --date=short --pretty=format:'%x00%h%x00%cd%x00%s%x00%an%x00%d' | gawk -F '\\0' '{ printf \"%s\\033[31m%s\\033[0m \\033[32m%s\\033[0m  %-50s \\033[30;1m%s\\033[0m\\033[33m%s\\n\", $1, $2, $3, gensub(/(.{49}).{2,}/, \"\\\\1…\",\"g\",$4), $5, $6 }' | less -R"
+    l80 = "!git log --abbrev-commit --date=short --pretty=format:'%x00%h%x00%cd%x00%s%x00%an%x00%d' | gawk -F '\\0' '{ printf \"%s\\033[31m%s\\033[0m \\033[32m%s\\033[0m  %-80s \\033[30;1m%s\\033[0m\\033[33m%s\\n\", $1, $2, $3, gensub(/(.{79}).{2,}/, \"\\\\1…\",\"g\",$4), $5, $6 }' | less -R"
+    lg50 = "!git log --graph --color=always --abbrev-commit --date=relative --pretty=format:'%x00%h%x00%s%x00%cd%x00%an%x00%d' | gawk -F '\\0' '{ printf \"%s\\033[31m%s\\033[0m %-50s \\033[32m%14s\\033[0m \\033[30;1m%s\\033[0m\\033[33m%s\\n\", $1, $2, gensub(/(.{49}).{2,}/, \"\\\\1…\",\"g\",$3), $4, $5, $6 }' | less -R"
+    lg80 = "!git log --graph --color=always --abbrev-commit --date=relative --pretty=format:'%x00%h%x00%s%x00%cd%x00%an%x00%d' | gawk -F '\\0' '{ printf \"%s\\033[31m%s\\033[0m %-80s \\033[32m%14s\\033[0m \\033[30;1m%s\\033[0m\\033[33m%s\\n\", $1, $2, gensub(/(.{79}).{2,}/, \"\\\\1…\",\"g\",$3), $4, $5, $6 }' | less -R"
 [diff]
-	renamelimit = 10000
-	renames = copies
-	mnemonicprefix = true
+    renamelimit = 10000
+    renames = copies
+    mnemonicprefix = true
 [branch]
-	autosetupmerge = true
+    autosetupmerge = true
 [push]
-	default = tracking
+    default = tracking
 [rerere]
-	enabled = true
+    enabled = true
 [merge]
-	stat = true
+    stat = true
 [pager]
-	color = true
+    color = true

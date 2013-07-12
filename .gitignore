@@ -1,0 +1,24 @@
+# Exclude the build symlink at the base of any repo.
+./build
+.settings/*
+
+# Exclude some Jave stuff.
+tags
+.project
+.classpath
+*.class
+bin/*
+./eclipse-bin/*
+eclipse-build/*
+build
+
+# Exclude back-ups
+*~
+*.swp
+*.swo
+
+# Exclude Apollo overrides
+apollo-overrides
+
+# Exclude test script
+*.tst.sh
