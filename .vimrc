@@ -70,7 +70,7 @@ Bundle 'git://git.wincent.com/command-t.git'
 Bundle 'vim-scripts/grep.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'fholgado/minibufexpl.vim'
-Bundle 'bling/vim-airline'
+"Bundle 'bling/vim-airline'
 
 
 "--------------------------------------------------------------------------------------------------------------
@@ -119,12 +119,19 @@ filetype plugin indent on     " required!
 "--------------------------------------------------------------------------------------------------------------
 "let colors_name="bandit"
 "hi Normal guibg=DarkBlue guifg=White ctermbg=4 
-hi Statement ctermfg=3 gui=undercurl guifg=Yellow guibg=#f6e8d0 guisp=Red 
+hi Statement ctermfg=32 cterm=bold
 hi Keyword guifg=DarkBlue ctermfg=DarkBlue
-hi Comment guifg=blue ctermfg=cyan gui=Bold cterm=bold 
+hi Comment guifg=yellow ctermfg=yellow
 hi PreProc ctermfg=magenta cterm=bold guifg=#FF00FF
-hi Identifier ctermfg=DarkBlue cterm=bold guifg=BLUE
-hi Constant ctermfg=cyan cterm=bold guifg=red
+hi Identifier ctermfg=08342 cterm=bold guifg=BLUE
+hi Constant ctermfg=cyan cterm=none guifg=red
+hi Special ctermfg=gray ctermbg=NONE
+hi Visual ctermfg=none ctermbg=093426
+hi Normal ctermfg=222 ctermbg=NONE"999
+hi Search ctermbg=yellow ctermfg=0a234e cterm=bold
+hi CursorLine   cterm=NONE ctermbg=black ctermfg=none guibg=darkred guifg=white
+hi CursorColumn cterm=NONE ctermbg=black ctermfg=none guibg=darkred guifg=white
+nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
 
 "--------------------------------------------------------------------------------------------------------------
 " allow backspacing over everything in insert mode
@@ -158,13 +165,14 @@ set smartindent
 
 autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4
 
+let java_allow_cpp_keywords=1
 let java_mark_braces_in_parens_as_errors=1
 let java_highlight_all=1
 let java_highlight_debug=1
-let java_ignore_javadoc=1
+"let java_ignore_javadoc=1
 let java_highlight_java_lang_ids=1
 let java_highlight_functions="style"
-let java_minlines = 150
+let java_minlines = 120
  
 
 set showcmd            " Show (partial) command in status line.
@@ -221,14 +229,19 @@ nnoremap <silent><F5> :A <CR>
 "   +h View the type hierarchy tree
 "--------------------------------------------------------------------------------------------------------------
 au filetype java nnoremap <F6>o :JavaImportOrganize<CR>
-au filetype java nnoremap <F6>i :JavaImpl<CR>
+au filetype java nnoremap <F6>i :JavaImport<CR>
+au filetype java nnoremap <F6>l :JavaImpl<CR>
 au filetype java nnoremap <F6>h :JavaHierarchy<CR>
 au filetype java nnoremap <F6>sd :JavaSearchDoc<CR>
 
 "--------------------------------------------------------------------------------------------------------------
 " Press F7 to compile/build and show errors 
 "--------------------------------------------------------------------------------------------------------------
+noremap <F7>b :!brazil-build build 1>&0 >compile_log<CR> :tabe compile_log<CR>
+noremap <F7>t :!brazil-build single-test -DtestClass=com.amazon.payments.maps3.security.LdapAccountRoutingIdentifierPermissionTest 2>&0 1>&0 >unittest_log<CR> :tabe unittest_log<CR>
+
 au filetype c noremap <F7> :w<CR> :make<CR> :cw<CR>
+
 
 "--------------------------------------------------------------------------------------------------------------
 " Press F8 
@@ -406,12 +419,12 @@ if has("cscope")
 endif
 
 " MiniBufExpl Colors
-hi MBENormal               guifg=#808080 guibg=fg
-hi MBEChanged              guifg=#CD5907 guibg=fg
-hi MBEVisibleNormal        guifg=#5DC2D6 guibg=fg
-hi MBEVisibleChanged       guifg=#F1266F guibg=fg
-hi MBEVisibleActiveNormal  guifg=#A6DB29 guibg=fg
-hi MBEVisibleActiveChanged guifg=#F1266F guibg=fg
+hi MBENormal               ctermfg=808080 guibg=fg
+hi MBEChanged              ctermfg=66631A guibg=fg
+hi MBEVisibleNormal        ctermfg=9234AB guibg=fg
+hi MBEVisibleChanged       ctermfg=72933A guibg=fg
+hi MBEVisibleActiveNormal  ctermfg=11334A guibg=fg
+hi MBEVisibleActiveChanged ctermfg=7343EA guibg=fg
 
 
 
