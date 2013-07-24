@@ -99,4 +99,5 @@ shellcmd       ls              'ls -F --color=auto'
 shellcmd    acroread        'acroread 1>/dev/null 2>/dev/null'
 shellcmd    google-chrome   'google-chrome 1>/dev/null 2>/dev/null &'
 shellcmd    texmacs         'texmacs 1>/dev/null 2>/dev/null'
+shellcmd    less            'less -FMRiX'
 
