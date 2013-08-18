@@ -3,18 +3,47 @@
 " This is Silao's (writecoffee) Vim initialization file.
 "
 "
-" --- Plugin list:
+"   Plugin list:
 "       Vundle
 "       YouCompleteMe
 "       winManager
-"           |- tagList (out-of-date)
+"           |- tagList
 "               |- ctags (copy .vim into $HOME/.vim/plugin or try sudo apt-get install)
 "           |- miniBuffer
 "           |- nerdtree
-"       easyColour
 "       tagHighlight
 "       CommandT
-"       vim-airline
+"       ConqueTerminal (ConqueShell)
+"       vim-airline (unused)
+"       Eclim
+"
+"   Command-T shortcuts need to bear in mind :)
+"   
+"       ** Mappings thtat are active when the prompt has focus:
+"       -- <BS>        delete the character to the left of the cursor
+"       -- <Del>       delete the character at the cursor
+"       -- <Left>      move the cursor one character to the left
+"       -- <C-h>       move the cursor one character to the left
+"       -- <Right>     move the cursor one character to the right
+"       -- <C-l>       move the cursor one character to the right
+"       -- <C-a>       move the cursor to the start (left)
+"       -- <C-e>       move the cursor to the end (right)
+"       -- <C-u>       clear the contents of the prompt
+"       -- <Tab>       change focus to the file listing
+"
+"       ** Mappings that are active when the file listing has focus:
+"       -- <Tab>       change focus to the prompt
+"
+"       ** Mappings are active when either the prompt or the file listing has focus:
+"       -- <C-CR>      open the selected file in a new split window
+"       -- <C-s>       open the selected file in a new split window
+"       -- <C-v>       open the selected file in a new vertical split window
+"       -- <C-t>       open the selected file in a new tab
+"       -- <C-j>       select next file in the file listing
+"       -- <C-n>       select next file in the file listing
+"       -- <C-k>       select previous file in the file listing
+"       -- <C-p>       select previous file in the file listing
+"       -- <C-f>       flush the cache (see |:CommandTFlush| for details)
 "
 " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " "
 
@@ -31,6 +60,10 @@ if $COLORTERM == 'gnome-terminal'
 endif
 
 set nocompatible
+set nocp      
+filetype plugin on      
+
+
 
 "--------------------------------------------------------------------------------------------------------------
 " Vundle
@@ -41,97 +74,55 @@ set nocompatible
 "   :BundleSearch(!) foo - search(or refresh cache first) for foo
 "   :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
 "
-" see :h vundle for more details or wiki for FAQ
-" NOTE: comments after Bundle command are not allowed..
 "--------------------------------------------------------------------------------------------------------------
-set nocompatible               " be iMproved
-filetype off                   " required!
 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-" let Vundle manage Vundle
-" required! 
 Bundle 'gmarik/vundle'
-
-" My Bundles here:
-"
-" original repos on github
 Bundle 'tpope/vim-fugitive'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'tpope/vim-rails.git'
-" vim-scripts repos
 Bundle 'L9'
 Bundle 'FuzzyFinder'
-" non github repos
 Bundle 'git://git.wincent.com/command-t.git'
-"Bundle 'Valloric/YouCompleteMe'
+Bundle 'Valloric/YouCompleteMe'
 Bundle 'vim-scripts/grep.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'fholgado/minibufexpl.vim'
-"Bundle 'bling/vim-airline'
+Bundle 'wlangstroth/vim-racket'
+Bundle 'vim-scripts/Conque-Shell'
+" Bundle 'bling/vim-airline'
 
 
 "--------------------------------------------------------------------------------------------------------------
-"  Command-T
-"
-"   The following mappings are active when the prompt has focus:
-"
-"   <BS>        delete the character to the left of the cursor
-"   <Del>       delete the character at the cursor
-"   <Left>      move the cursor one character to the left
-"   <C-h>       move the cursor one character to the left
-"   <Right>     move the cursor one character to the right
-"   <C-l>       move the cursor one character to the right
-"   <C-a>       move the cursor to the start (left)
-"   <C-e>       move the cursor to the end (right)
-"   <C-u>       clear the contents of the prompt
-"   <Tab>       change focus to the file listing
-"
-"   The following mappings are active when the file listing has focus:
-"
-"   <Tab>       change focus to the prompt
-"
-"   The following mappings are active when either the prompt or the file listing
-"   has focus:
-"
-"   <CR>        open the selected file
-"   <C-CR>      open the selected file in a new split window
-"   <C-s>       open the selected file in a new split window
-"   <C-v>       open the selected file in a new vertical split window
-"   <C-t>       open the selected file in a new tab
-"   <C-j>       select next file in the file listing
-"   <C-n>       select next file in the file listing
-"   <Down>      select next file in the file listing
-"   <C-k>       select previous file in the file listing
-"   <C-p>       select previous file in the file listing
-"   <Up>        select previous file in the file listing
-"   <C-f>       flush the cache (see |:CommandTFlush| for details)
-"   <C-c>       cancel (dismisses file listing)
+" Most Comfortable Color Scheme
+"   
+"   -- Adjustable according to language and shell
+"   -- New color would be added due to plugins
 "--------------------------------------------------------------------------------------------------------------
 
+hi Statement                ctermfg=32 cterm=bold
+hi Keyword                  guifg=DarkBlue ctermfg=DarkBlue
+hi Comment                  guifg=yellow ctermfg=yellow
+hi PreProc                  ctermfg=magenta cterm=bold guifg=#FF00FF
+hi Identifier               ctermfg=08342 cterm=bold guifg=BLUE
+hi Constant                 ctermfg=cyan cterm=none guifg=red
+hi Special                  ctermfg=gray ctermbg=NONE
+hi Visual                   ctermfg=none ctermbg=darkgrey
+hi Normal                   ctermfg=222 ctermbg=NONE"999
+hi Search                   ctermbg=yellow ctermfg=0a234e cterm=bold
+hi CursorLine               cterm=NONE ctermbg=black ctermfg=none guibg=darkred guifg=white
+hi CursorColumn             cterm=NONE ctermbg=black ctermfg=none guibg=darkred guifg=white
 
-filetype plugin indent on     " required!
+hi MBENormal                ctermfg=808080 guibg=fg
+hi MBEChanged               ctermfg=66631A guibg=fg
+hi MBEVisibleNormal         ctermfg=9234AB guibg=fg
+hi MBEVisibleChanged        ctermfg=72933A guibg=fg
+hi MBEVisibleActiveNormal   ctermfg=11334A guibg=fg
+hi MBEVisibleActiveChanged  ctermfg=7343EA guibg=fg
 
-"--------------------------------------------------------------------------------------------------------------
-" EasyColour
-"--------------------------------------------------------------------------------------------------------------
-"let colors_name="bandit"
-"hi Normal guibg=DarkBlue guifg=White ctermbg=4 
-hi Statement ctermfg=32 cterm=bold
-hi Keyword guifg=DarkBlue ctermfg=DarkBlue
-hi Comment guifg=yellow ctermfg=yellow
-hi PreProc ctermfg=magenta cterm=bold guifg=#FF00FF
-hi Identifier ctermfg=08342 cterm=bold guifg=BLUE
-hi Constant ctermfg=cyan cterm=none guifg=red
-hi Special ctermfg=gray ctermbg=NONE
-hi Visual ctermfg=none ctermbg=093426
-hi Normal ctermfg=222 ctermbg=NONE"999
-hi Search ctermbg=yellow ctermfg=0a234e cterm=bold
-hi CursorLine   cterm=NONE ctermbg=black ctermfg=none guibg=darkred guifg=white
-hi CursorColumn cterm=NONE ctermbg=black ctermfg=none guibg=darkred guifg=white
-nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
 
 "--------------------------------------------------------------------------------------------------------------
 " allow backspacing over everything in insert mode
@@ -146,119 +137,53 @@ if has("autocmd")
     \| exe "normal g'\"" | endif
 endif
 
+
 "--------------------------------------------------------------------------------------------------------------
-" Have Vim load indentation rules according to the detected filetype. Per
-" default Debian Vim only load filetype specific plugins.
+" Java
+" 
+"   -- Syntax highlight settings
+"   -- <F6>
+"           +o Import undefined types, remove unused imports, sort and format imports.
+"           +i View implementation/overridable methods from super classes and implemented interface
+"           +h View the type hierarchy tree
 "--------------------------------------------------------------------------------------------------------------
-if has("autocmd")
-  filetype indent on
-endif
-
-set number
-set title
-set showmode
-set expandtab
-set shiftwidth=4
-set softtabstop=4
-set autoindent
-set smartindent
-
-autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4
-
-let java_allow_cpp_keywords=1
 let java_mark_braces_in_parens_as_errors=1
 let java_highlight_all=1
 let java_highlight_debug=1
-"let java_ignore_javadoc=1
+let java_ignore_javadoc=1
 let java_highlight_java_lang_ids=1
 let java_highlight_functions="style"
-let java_minlines = 120
+let java_minlines = 150
+
+au filetype java nnoremap <F6>o     :JavaImportOrganize<CR>
+au filetype java nnoremap <F6>i     :JavaImpl<CR>
+au filetype java nnoremap <F6>h     :JavaHierarchy<CR>
+au filetype java nnoremap <F6>sd    :JavaSearchDoc<CR>
+au filetype java nnoremap <F6>i     :JavaImport<CR>
+au filetype java nnoremap <F6>l     :JavaImpl<CR>
+au filetype java nnoremap <F8>      :JavaSearch
+
  
-
-set showcmd            " Show (partial) command in status line.
-set showmatch          " Show matching brackets.
-"set ignorecase         " Do case insensitive matching
-set smartcase          " Do smart case matching
-set incsearch          " Incremental search
-set autowrite          " Automatically save before commands like :next and :make
-set hidden             " Hide buffers when they are abandoned
-set mouse=a            " Enable mouse usage (all modes) in terminals
-set hlsearch
-
-
-nnoremap <silent><F9> :WMClose<CR> :tab split<CR>
-
 "--------------------------------------------------------------------------------------------------------------
-" Press F3 to Grep
-"   :AS " split the window horizontally
+" <F3>
+"
+"   RGrep plugin reserved!
+"       :cnext/cprev        -- jump to the next/prev output file
+"       :colder/cnewer      -- go between multiple grep quickfix output window
+"       :copen              -- open the quickfix window again
 "--------------------------------------------------------------------------------------------------------------
-au filetype java let Grep_Default_Filelist='*.java'
-au filetype c let Grep_Default_Filelist='*.c *.h *.cpp'
-au filetype python let Grep_Default_Filelist='*.py'
+au filetype java    let Grep_Default_Filelist='*.java'
+au filetype c       let Grep_Default_Filelist='*.c *.h *.cpp'
+au filetype python  let Grep_Default_Filelist='*.py'
+
 nnoremap <silent> <F3> :Rgrep<CR>
 
-"--------------------------------------------------------------------------------------------------------------
-" Press F4 to toggle highlighting on/off, and show current value.
-"--------------------------------------------------------------------------------------------------------------
-noremap <F4> :set hlsearch! hlsearch?<CR>
-
-"--------------------------------------------------------------------------------------------------------------
-" Press F5 
-"
-" C files -- to switch between .c and .h file
-"   :AS " split the window horizontally
-"   :AV " split the window vertically
-"   :AT " new tab 
-"
-" Java files -- 
-"--------------------------------------------------------------------------------------------------------------
-
-nnoremap <silent><F5> :A <CR>
-
-" nmap ,s :find %:t:r.c<CR>
-" nmap ,S :sf %:t:r.c<CR>
-" nmap ,h :find %:t:r.h<CR>
-" nmap ,H :sf %:t:r.h<CR>
-
-"--------------------------------------------------------------------------------------------------------------
-" Press F6
-"
-" Java Files --
-"   +o Import undefined types, remove unused imports, sort and format imports.
-"   +i View implementation/overridable methods from super classes and implemented interface
-"   +h View the type hierarchy tree
-"--------------------------------------------------------------------------------------------------------------
-au filetype java nnoremap <F6>o :JavaImportOrganize<CR>
-au filetype java nnoremap <F6>i :JavaImport<CR>
-au filetype java nnoremap <F6>l :JavaImpl<CR>
-au filetype java nnoremap <F6>h :JavaHierarchy<CR>
-au filetype java nnoremap <F6>sd :JavaSearchDoc<CR>
-
-"--------------------------------------------------------------------------------------------------------------
-" Press F7 to compile/build and show errors 
-"--------------------------------------------------------------------------------------------------------------
-noremap <F7>b :!brazil-build build 1>&0 >compile_log<CR> :tabe compile_log<CR>
-noremap <F7>t :!brazil-build single-test -DtestClass=com.amazon.payments.maps3.security.LdapAccountRoutingIdentifierPermissionTest 2>&0 1>&0 >unittest_log<CR> :tabe unittest_log<CR>
-
-au filetype c noremap <F7> :w<CR> :make<CR> :cw<CR>
-
-
-"--------------------------------------------------------------------------------------------------------------
-" Press F8 
-"
-" Java files --
-"   JavaSearch
-"--------------------------------------------------------------------------------------------------------------
-au filetype java nnoremap <F8> :JavaSearch
 
 "--------------------------------------------------------------------------------------------------------------
 " ConqueTerminal shortcuts to open a new bash buffer
 "--------------------------------------------------------------------------------------------------------------
 nnoremap ,c :ConqueTermSplit bash<CR>
 nnoremap ,vc :ConqueTermVSplit bash<CR>
-nnoremap ,q :q<CR>
-nnoremap ,s :w<CR>
-
 
 "--------------------------------------------------------------------------------------------------------------
 " ctags, tagList, winManager, nerdtree and vim buffer switching
@@ -269,10 +194,6 @@ nnoremap ,s :w<CR>
 "   :ta /^get   // navigate through a list of function names which start with 'get'
 "   :ts         // shows the list
 "--------------------------------------------------------------------------------------------------------------
-" let Tlist_Show_One_File=1
-" let Tlist_Exit_OnlyWindow=1
-" let g:winManagerWindowLayout='FileExplorer|TagList'
-" nmap WM :WMToggle<cr>
 map <c-w><c-t> :FirstExplorerWindow<cr>
 map <c-w><c-f> <c-w><c-t><c-w><c-j>
 map <c-w><c-b> :BottomExplorerWindow<cr>
@@ -300,12 +221,21 @@ nmap WM :WMToggle<CR>
 
 
 "--------------------------------------------------------------------------------------------------------------
-" type - to uncomment current line which has '//' in the beginning of the line
+"      * * *
+"    *
+"   *
+"   *
+"    *
+"      * * *
+"
+"   -- Comment Shortcuts
+"       <F7>        : compile and then show error in quickfix window
+"       \lo         : to comment out current line with /* */ surrounded
+"       \bco<CR>    : to comment out the block with '//' or '"' in the beginning of the line
+"
 "--------------------------------------------------------------------------------------------------------------
+au filetype c noremap <F7> :w<CR> :make<CR> :cw<CR>
 
-"--------------------------------------------------------------------------------------------------------------
-" type \lo to comment out current line with /* */ surrounded
-"--------------------------------------------------------------------------------------------------------------
 if match(expand("%:t"), ".py") != -1
     map \lo I#<Esc>
     noremap - :s/^\#//<CR>
@@ -314,9 +244,6 @@ else
     noremap - :s/^\/\///<CR>
 endif
 
-"--------------------------------------------------------------------------------------------------------------
-" type \bco<CR> to comment out the block with '//' or '"' in the beginning of the line
-"--------------------------------------------------------------------------------------------------------------
 function! BlockComment()
     " deal with filetypes that don't have block comments 
     let fileName = expand("%:t")
@@ -354,6 +281,13 @@ vmap <Leader>fco<CR> :call BlockComment()<CR>
 
 
 "--------------------------------------------------------------------------------------------------------------
+"      * * *
+"    *
+"   *
+"   *
+"    *
+"      * * *
+"
 " cscope settings:
 "
 " ----------------- key mappings
@@ -385,7 +319,6 @@ if has("cscope")
     nmap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
     nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>	
 
-
     " Using 'CTRL-spacebar' (intepreted as CTRL-@ by vim) then a search type
     " makes the vim window split horizontally, with search result displayed in
     " the new window.
@@ -402,7 +335,6 @@ if has("cscope")
     nmap <C-@>i :scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>	
     nmap <C-@>d :scs find d <C-R>=expand("<cword>")<CR><CR>	
 
-
     " Hitting CTRL-space *twice* before the search type does a vertical 
     " split instead of a horizontal one (vim 6 and up only)
     "
@@ -418,128 +350,38 @@ if has("cscope")
     nmap <C-@><C-@>d :vert scs find d <C-R>=expand("<cword>")<CR><CR>
 endif
 
-" MiniBufExpl Colors
-hi MBENormal               ctermfg=808080 guibg=fg
-hi MBEChanged              ctermfg=66631A guibg=fg
-hi MBEVisibleNormal        ctermfg=9234AB guibg=fg
-hi MBEVisibleChanged       ctermfg=72933A guibg=fg
-hi MBEVisibleActiveNormal  ctermfg=11334A guibg=fg
-hi MBEVisibleActiveChanged ctermfg=7343EA guibg=fg
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 "--------------------------------------------------------------------------------------------------------------
-" For local replace
-nnoremap gr [{V%:s/
+" Miscallenous Settings
+"--------------------------------------------------------------------------------------------------------------
 
-" For global replace
-nnoremap gR gD:%s/<C-R>///gc<left><left><left>
+set showcmd            " Show (partial) command in status line.
+set showmatch          " Show matching brackets.
+"set ignorecase         " Do case insensitive matching
+set smartcase          " Do smart case matching
+set incsearch          " Incremental search
+set autowrite          " Automatically save before commands like :next and :make
+set hidden             " Hide buffers when they are abandoned
+set mouse=a            " Enable mouse usage (all modes) in terminals
+set hlsearch
+set number
+set title
+set showmode
+set expandtab
+set shiftwidth=4
+set softtabstop=4
+set autoindent
+set smartindent
 
+nnoremap <silent><F9>   :WMClose<CR> :tab split<CR>
+nnoremap <Leader>c      :set cursorline! cursorcolumn!<CR>
+nnoremap ,q             :q<CR>
+nnoremap ,s             :w<CR>
+noremap <F4>            :set hlsearch! hlsearch?<CR>
 
+if has("autocmd")
+  filetype indent on
+endif
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-" filetype plugin indent on
-" set completeopt=longest,menu
-
-
-" prerequisit tags
-set nocp      
-filetype plugin on      
-
-" configure tags - add additional tags here or comment out not-used ones      
-"set tags+=~/.vim/tags/include
-set tags+=./tags
-"set tags+=~/.vim/tags/gl      
-"set tags+=~/.vim/tags/sdl      
-"set tags+=~/.vim/tags/qt4      
-
-"" build tags of your own project with CTRL+F12      
-""map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>      
-"noremap <F2> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<cr>      
-"inoremap <F12> <Esc>:!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<cr>      
-"
-"" OmniCppComplete      
-"let OmniCpp_NamespaceSearch = 1      
-"let OmniCpp_GlobalScopeSearch = 1      
-"let OmniCpp_ShowAccess = 1      
-"let OmniCpp_MayCompleteDot = 1      
-"let OmniCpp_MayCompleteArrow = 1      
-"let OmniCpp_MayCompleteScope = 1      
-"let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
-"
-"
-"" automatically open and close the popup menu / preview window      
-"au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif      
-"set completeopt=menuone,menu,longest,preview
-
-"set include=^\\s*#\\s*include\ \\(<boost/\\)\\@!
-"let g:clang_user_options='|| exit 0'
-"let g:clang_user_auto=0
-"let g:clang_use_library=1
-"let g:clang_auto_user_options='path, .clang_complete'
-
-
-set pastetoggle=<F2>
-
-au FileType python setlocal tabstop=8 expandtab shiftwidth=4 softtabstop=4
+au filetype python setlocal expandtab shiftwidth=4 softtabstop=4
 
