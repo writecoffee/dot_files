@@ -8,42 +8,46 @@
 "       YouCompleteMe
 "       winManager
 "           |- tagList
-"               |- ctags (copy .vim into $HOME/.vim/plugin or try sudo apt-get install)
+"               |- ctags
 "           |- miniBuffer
 "           |- nerdtree
 "       tagHighlight
-"       CommandT (must install ruby-dev/rake package before invoke "rake make")
+"       CommandT 
 "       ConqueTerminal (ConqueShell)
 "       vim-airline (unused)
 "       Eclim
 "
-"   Command-T shortcuts need to bear in mind :)
-"   
-"       ** Mappings thtat are active when the prompt has focus:
-"       -- <BS>        delete the character to the left of the cursor
-"       -- <Del>       delete the character at the cursor
-"       -- <Left>      move the cursor one character to the left
-"       -- <C-h>       move the cursor one character to the left
-"       -- <Right>     move the cursor one character to the right
-"       -- <C-l>       move the cursor one character to the right
-"       -- <C-a>       move the cursor to the start (left)
-"       -- <C-e>       move the cursor to the end (right)
-"       -- <C-u>       clear the contents of the prompt
-"       -- <Tab>       change focus to the file listing
+"   Command-T
+"       Install:
+"           -- Must install ruby-dev/rake package before invoke "rake make"
+"           -- Need a vim version with Ruby support
+"           -- "cd ~/.vim/ruby/command-t; ruby extconf/rb; make"
+"       Shortcuts: 
+"           ** Mappings thtat are active when the prompt has focus:
+"           -- <BS>        delete the character to the left of the cursor
+"           -- <Del>       delete the character at the cursor
+"           -- <Left>      move the cursor one character to the left
+"           -- <C-h>       move the cursor one character to the left
+"           -- <Right>     move the cursor one character to the right
+"           -- <C-l>       move the cursor one character to the right
+"           -- <C-a>       move the cursor to the start (left)
+"           -- <C-e>       move the cursor to the end (right)
+"           -- <C-u>       clear the contents of the prompt
+"           -- <Tab>       change focus to the file listing
 "
-"       ** Mappings that are active when the file listing has focus:
-"       -- <Tab>       change focus to the prompt
+"           ** Mappings that are active when the file listing has focus:
+"           -- <Tab>       change focus to the prompt
 "
-"       ** Mappings are active when either the prompt or the file listing has focus:
-"       -- <C-CR>      open the selected file in a new split window
-"       -- <C-s>       open the selected file in a new split window
-"       -- <C-v>       open the selected file in a new vertical split window
-"       -- <C-t>       open the selected file in a new tab
-"       -- <C-j>       select next file in the file listing
-"       -- <C-n>       select next file in the file listing
-"       -- <C-k>       select previous file in the file listing
-"       -- <C-p>       select previous file in the file listing
-"       -- <C-f>       flush the cache (see |:CommandTFlush| for details)
+"           ** Mappings are active when either the prompt or the file listing has focus:
+"           -- <C-CR>      open the selected file in a new split window
+"           -- <C-s>       open the selected file in a new split window
+"           -- <C-v>       open the selected file in a new vertical split window
+"           -- <C-t>       open the selected file in a new tab
+"           -- <C-j>       select next file in the file listing
+"           -- <C-n>       select next file in the file listing
+"           -- <C-k>       select previous file in the file listing
+"           -- <C-p>       select previous file in the file listing
+"           -- <C-f>       flush the cache (see |:CommandTFlush| for details)
 "
 " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " "
 
@@ -93,6 +97,9 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'fholgado/minibufexpl.vim'
 Bundle 'wlangstroth/vim-racket'
 Bundle 'vim-scripts/Conque-Shell'
+Bundle 'vim-scripts/winmanager'
+Bundle 'vim-scripts/taglist.vim'
+Bundle 'vim-scripts/ctags.vim'
 " Bundle 'bling/vim-airline'
 
 
@@ -188,11 +195,18 @@ nnoremap ,vc :ConqueTermVSplit bash<CR>
 "--------------------------------------------------------------------------------------------------------------
 " ctags, tagList, winManager, nerdtree and vim buffer switching
 "
+"   "sudo apt-get install ctags"
 "   Before installing winManager, should do "ctags -R" firstly building the ctags list.
 "   <c-]> would navigate to the function definition.
 "   <c-t> return back again to function call
-"   :ta /^get   // navigate through a list of function names which start with 'get'
-"   :ts         // shows the list
+"
+"   Shortcuts:
+"       -- navigate through a list of function names which start with 'get'
+"               :ta /^get
+"
+"       -- shows the list
+"               :ts
+"
 "--------------------------------------------------------------------------------------------------------------
 map <c-w><c-t> :FirstExplorerWindow<cr>
 map <c-w><c-f> <c-w><c-t><c-w><c-j>
@@ -207,7 +221,7 @@ let g:miniBufExplModSelTarget = 1
 let g:miniBufExplMoreThanOne=0
 
 let g:NERDTree_title="[NERDTree]"
-let g:winManagerWindowLayout="NERDTree|TagList"
+let g:winManagerWindowLayout="NERDTree|taglist"
 
 function! NERDTree_Start()
     exec 'NERDTree'
