@@ -12,7 +12,7 @@
 "           |- miniBuffer
 "           |- nerdtree
 "       tagHighlight
-"       CommandT
+"       CommandT (must install ruby-dev/rake package before invoke "rake make")
 "       ConqueTerminal (ConqueShell)
 "       vim-airline (unused)
 "       Eclim
@@ -86,7 +86,7 @@ Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'tpope/vim-rails.git'
 Bundle 'L9'
 Bundle 'FuzzyFinder'
-Bundle 'git://git.wincent.com/command-t.git'
+Bundle 'wincent/Command-T'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'vim-scripts/grep.vim'
 Bundle 'scrooloose/nerdtree'
