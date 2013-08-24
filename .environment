@@ -55,10 +55,9 @@ umask 077
 # Set some common environment variables.
 #setenvvar        PRINTER          bw1
 setenvvar        PAGER            less
-setenvvar        LESS             -X
+setenvvar        LESS             -eirMX
 setenvvar        EDITOR           vim
 setenvifnot      VISUAL           gvim
-
 
 setenvvar TEXMACS_PATH     '$HOME/TeXmacs/'
 #
