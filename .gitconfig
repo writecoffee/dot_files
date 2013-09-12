@@ -3,6 +3,7 @@
     autoctlf = input
     safecrlf = true
     whitespace=fix,-indent-with-non-tab, trailing-space,cr-at-eol
+    editor = vim
 [user]
     name = writecoffee
     email = writecoffee@gmail.com
