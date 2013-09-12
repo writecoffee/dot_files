@@ -110,7 +110,7 @@ Bundle 'vim-scripts/ctags.vim'
 "   -- New color would be added due to plugins
 "--------------------------------------------------------------------------------------------------------------
 
-hi Statement                ctermfg=32 cterm=bold
+hi Statement                ctermfg=32 cterm=bold guifg=DarkYellow
 hi Keyword                  guifg=DarkBlue ctermfg=DarkBlue
 hi Comment                  guifg=yellow ctermfg=yellow
 hi PreProc                  ctermfg=magenta cterm=bold guifg=#FF00FF
@@ -153,6 +153,14 @@ endif
 "           +o Import undefined types, remove unused imports, sort and format imports.
 "           +i View implementation/overridable methods from super classes and implemented interface
 "           +h View the type hierarchy tree
+"
+"   -- Necessary change in eclipse key binding
+"           Alt + 5     (debug) Step Into
+"           Alt + 6     (debug) Step Over
+"           Alt + 7     (debug) Step Return
+"           Alt + R     (debug) Run to Line
+"           Ctrl + F11  (window) Run
+"           F11         (window) Debug
 "--------------------------------------------------------------------------------------------------------------
 let java_mark_braces_in_parens_as_errors=1
 let java_highlight_all=1
@@ -165,7 +173,7 @@ let java_minlines = 150
 au filetype java nnoremap <F6>o     :JavaImportOrganize<CR>
 au filetype java nnoremap <F6>i     :JavaImpl<CR>
 au filetype java nnoremap <F6>h     :JavaHierarchy<CR>
-au filetype java nnoremap <F6>sd    :JavaSearchDoc<CR>
+au filetype java nnoremap <F6>sd    :JavaDocSearch<CR>
 au filetype java nnoremap <F6>i     :JavaImport<CR>
 au filetype java nnoremap <F6>l     :JavaImpl<CR>
 au filetype java nnoremap <F8>      :JavaSearch
