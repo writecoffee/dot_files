@@ -91,7 +91,7 @@ Bundle 'tpope/vim-rails.git'
 Bundle 'L9'
 Bundle 'FuzzyFinder'
 Bundle 'wincent/Command-T'
-Bundle 'Valloric/YouCompleteMe'
+" Bundle 'Valloric/YouCompleteMe'
 Bundle 'vim-scripts/grep.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'fholgado/minibufexpl.vim'
@@ -110,6 +110,7 @@ Bundle 'vim-scripts/ctags.vim'
 "   -- New color would be added due to plugins
 "--------------------------------------------------------------------------------------------------------------
 
+hi Normal                   guifg=gray guibg=#212904 
 hi Statement                ctermfg=32 cterm=bold guifg=DarkYellow
 hi Keyword                  guifg=DarkBlue ctermfg=DarkBlue
 hi Comment                  guifg=yellow ctermfg=yellow
@@ -129,7 +130,6 @@ hi MBEVisibleNormal         ctermfg=9234AB guibg=fg
 hi MBEVisibleChanged        ctermfg=72933A guibg=fg
 hi MBEVisibleActiveNormal   ctermfg=11334A guibg=fg
 hi MBEVisibleActiveChanged  ctermfg=7343EA guibg=fg
-
 
 "--------------------------------------------------------------------------------------------------------------
 " allow backspacing over everything in insert mode
@@ -228,8 +228,8 @@ let g:miniBufExplMapCTabSwitchBufs = 1
 let g:miniBufExplModSelTarget = 1
 let g:miniBufExplMoreThanOne=0
 
-let g:NERDTree_title="[NERDTree]"
-let g:winManagerWindowLayout="NERDTree|taglist"
+let g:NERDTree_title='NERD Tree'
+let g:winManagerWindowLayout="NERDTree|TagList"
 
 function! NERDTree_Start()
     exec 'NERDTree'
@@ -400,6 +400,7 @@ nnoremap <Leader>c      :set cursorline! cursorcolumn!<CR>
 nnoremap ,q             :q<CR>
 nnoremap ,s             :w<CR>
 noremap <F4>            :set hlsearch! hlsearch?<CR>
+noremap ,w              :cclose<CR>
 
 if has("autocmd")
   filetype indent on
