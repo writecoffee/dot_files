@@ -1,0 +1,69 @@
+
+Tsu's GDB Cheatsheet
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+START-UP
+
+-- File listing GDB commands to perform. Good for automating set-up.
+
+   $ gdb BIN --command=COMMAND_FILE
+   $ gdb BIN -x COMMAND_FILE
+
+-- Run GDB using specified directory as the current working directory.
+
+   $ gdb --cd=DIR
+
+-- Read symbol table from file.
+
+   $ gdb --symbols=SYM_FILE
+   $ gdb -s SYM_FILE
+
+-- Specify device for running program's standard input and output.
+
+   $ gdb --tty=DEVICE
+
+-- Specify process ID number to attach to.
+
+   $ gdb --pid=PROCESS_ID 
+   $ gdb -p PROCESS_ID
+   $ gdb -c PROCESS_ID
+
+-- Do not print the introductory and copyright messages.
+
+   $ gdb --quiet
+
+-- Run in batch (not interactive) mode. Execute commands from file. 
+
+   $ gdb --batch -x COMMAND_FILE
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+PROCESS
+
+-- Debug with multiple processes
+
+   (gdb) set follow-fork-mode [parent|child|ask]
+   (gdb) show follow-fork-mode
+
+   or 
+
+   $ gdb name-of-executable
+   $ gdb -e name-of-executable -c name-of-core-file
+   $ gdb name-of-executable -pid process-id 
+
+-- List process identifiers
+   $ ps -auxw
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+ASSEMBLY
+
+-- Show tracable disassembled binary file (even without -g flag when compiling).
+
+   (gdb) start
+   (gdb) layout asm
+
+-- 
