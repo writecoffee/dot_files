@@ -66,4 +66,52 @@ ASSEMBLY
    (gdb) start
    (gdb) layout asm
 
--- 
+-- Set breakpoint at specific function, e.g., sum; and then play with it.
+
+   (gdb) break sum
+   (gdb) break *0x80483c3
+   (gdb) disable 1
+   (gdb) enable 1
+   (gdb) clear sum
+   (gdb) si
+   (gdb) ...
+   (gdb) ni
+   (gdb) until 1
+   (gdb) call sum(1, 2)
+
+-- Examine code
+
+   (gdb) disas
+   (gdb) disas sum
+   (gdb) disas 0x80483b7
+   (gdb) disas 0x80483b7 0x80483c7
+   (gdb) print /x $rip
+   (gdb) print /d $rip
+   (gdb) print /t $rip
+
+-- Examine data: examine address in $rsp, print as offset from previous global symbol.
+
+   (gdb) x/a $rsp
+
+-- Examine data: examine a string stored at 0xbffff890
+
+   (gdb) x/s 0xbffff890
+
+-- Examine data: examine first 10 instructions of function sum
+
+   (gdb) x/10i sum
+
+-- Examine data: examine first 10 opcode bytes of function sum
+
+   (gdb) x/10b sum
+
+-- Examine data: miscallenous
+
+   (gdb) print /x $rax
+   (gdb) print /d $rax
+   (gdb) print /t $rax
+   (gdb) print /d (int)$rax
+   (gdb) print *(int *) 0xbffff890
+   (gdb) print *(int *) ($rsp + 8)
+   (gdb) print (char *) 0xbfff890
+   (gdb) x/w 0xbffff890
