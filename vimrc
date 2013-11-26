@@ -119,6 +119,7 @@ hi Identifier               ctermfg=08342 cterm=bold guifg=BLUE
 hi Constant                 ctermfg=cyan cterm=none guifg=red
 hi Special                  ctermfg=gray ctermbg=NONE
 hi Visual                   ctermfg=none ctermbg=darkgrey
+hi Label                    ctermfg=DarkBlue ctermbg=none
 hi Normal                   ctermfg=222 ctermbg=NONE"999
 hi Search                   ctermbg=yellow ctermfg=0a234e cterm=bold
 hi CursorLine               cterm=NONE ctermbg=black ctermfg=none guibg=darkred guifg=white
@@ -390,10 +391,10 @@ set number
 set title
 set showmode
 set expandtab
-set shiftwidth=4
-set softtabstop=4
-set autoindent
-set smartindent
+"set shiftwidth=4
+"set softtabstop=4
+"set autoindent
+"set smartindent
 
 nnoremap <silent><F9>   :WMClose<CR> :tab split<CR>
 nnoremap <Leader>c      :set cursorline! cursorcolumn!<CR>
@@ -408,3 +409,12 @@ endif
 
 au filetype python setlocal expandtab shiftwidth=4 softtabstop=4
 
+au BufReadPost *.arr set filetype=pyret
+au BufReadPost *.arr set shiftwidth=2
+au BufReadPost *.arr set tabstop=2
+au BufReadPost *.arr set softtabstop=2
+
+let tlist_pyret_settings = 'pyret;f:function;h:helper;d:data;t:test'
+
+let tlist_tex_settings   = 'latex;s:sections;g:graphics;l:labels'
+let tlist_make_settings  = 'make;m:makros;t:targets'
