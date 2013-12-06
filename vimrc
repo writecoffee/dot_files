@@ -414,7 +414,7 @@ au BufReadPost *.arr set shiftwidth=2
 au BufReadPost *.arr set tabstop=2
 au BufReadPost *.arr set softtabstop=2
 
-let tlist_pyret_settings = 'pyret;f:function;h:helper;d:data;t:test'
+let tlist_pyret_settings = 'pyret;g:global;f:function;h:helper;d:data;t:test'
 
 let tlist_tex_settings   = 'latex;s:sections;g:graphics;l:labels'
 let tlist_make_settings  = 'make;m:makros;t:targets'
