@@ -1,0 +1,25 @@
+
+** Find file(s) under DIR with PATTERN matched
+
+   $ ls DIR | grep PATTERN 
+
+** Find file(s) under DIR recursively with PATTERN matched
+
+   $ find DIR -file PATTERN
+
+** List all files under DIR showing size, modification date, and etc
+
+   $ find DIR -type f -ls
+
+** Find union/intersect/different set between FILE_1 and FILE_2.
+   
+   $ cat FILE_1 FILE_2 | sort | uniq > OUTPUT
+
+   $ cat FILE_1 FILE_2 | sort | uniq -d > OUTPUT
+
+   $ cat FILE_1 FILE_2 | sort | uniq -u > OUTPUT
+
+** Replace all occurrence of PATTERN in files greped out.
+
+   $ grep -rl PATTERN DIR | xargs sed -i 's/OLD/NEW/g'
+
