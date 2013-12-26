@@ -1,6 +1,6 @@
 " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " "
 "
-" This is Silao's (writecoffee) Vim initialization file.
+" This is Tsu's (writecoffee) Vim initialization file.
 "
 "
 "   Plugin list:
@@ -49,12 +49,28 @@
 "           -- <C-p>       select previous file in the file listing
 "           -- <C-f>       flush the cache (see |:CommandTFlush| for details)
 "
+"   Insert-mode Completion
+"           -- 1.  Whole lines                                          |i_CTRL-X_CTRL-L|
+"           -- 2.  keywords in the current file                         |i_CTRL-X_CTRL-N|
+"           -- 3.  keywords in 'dictionary'                             |i_CTRL-X_CTRL-K|
+"           -- 4.  keywords in 'thesaurus', thesaurus-style             |i_CTRL-X_CTRL-T|
+"           -- 5.  keywords in the current and included files           |i_CTRL-X_CTRL-I|
+"           -- 6.  tags                                                 |i_CTRL-X_CTRL-]|
+"           -- 7.  file names                                           |i_CTRL-X_CTRL-F|
+"           -- 8.  definitions or macros                                |i_CTRL-X_CTRL-D|
+"           -- 9.  Vim command-line                                     |i_CTRL-X_CTRL-V|
+"           -- 10. User defined completion                              |i_CTRL-X_CTRL-U|
+"           -- 11. omni completion                                      |i_CTRL-X_CTRL-O|
+"           -- 12. Spelling suggestions                                 |i_CTRL-X_s|
+"           -- 13. keywords in 'complete'                               |i_CTRL-N|
+"
 " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " " "
 
 "--------------------------------------------------------------------------------------------------------------
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 "--------------------------------------------------------------------------------------------------------------
+
 "set term=ansi
 syntax enable
 syntax on
@@ -124,6 +140,8 @@ hi Normal                   ctermfg=222 ctermbg=NONE"999
 hi Search                   ctermbg=yellow ctermfg=0a234e cterm=bold
 hi CursorLine               cterm=NONE ctermbg=black ctermfg=none guibg=darkred guifg=white
 hi CursorColumn             cterm=NONE ctermbg=black ctermfg=none guibg=darkred guifg=white
+hi RipGroup                 ctermbg=yellow cterm=none ctermfg=black
+match RipGroup              /TODO/
 
 hi MBENormal                ctermfg=808080 guibg=fg
 hi MBEChanged               ctermfg=66631A guibg=fg
@@ -136,6 +154,15 @@ hi MBEVisibleActiveChanged  ctermfg=7343EA guibg=fg
 " allow backspacing over everything in insert mode
 "--------------------------------------------------------------------------------------------------------------
 set backspace=indent,eol,start
+
+"--------------------------------------------------------------------------------------------------------------
+" fold methods
+"--------------------------------------------------------------------------------------------------------------
+set foldenable
+set foldmethod=manual
+nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
+set foldopen-=search
+set foldopen-=undo
 
 "--------------------------------------------------------------------------------------------------------------
 " Have Vim jump to the last position when reopening a file
@@ -400,8 +427,9 @@ nnoremap <silent><F9>   :WMClose<CR> :tab split<CR>
 nnoremap <Leader>c      :set cursorline! cursorcolumn!<CR>
 nnoremap ,q             :q<CR>
 nnoremap ,s             :w<CR>
-noremap <F4>            :set hlsearch! hlsearch?<CR>
-noremap ,w              :cclose<CR>
+nnoremap <F4>           :set hlsearch! hlsearch?<CR>
+nnoremap ,w             :cclose<CR>
+nnoremap ,r             :mks!<CR>
 
 if has("autocmd")
   filetype indent on
@@ -415,6 +443,5 @@ au BufReadPost *.arr set tabstop=2
 au BufReadPost *.arr set softtabstop=2
 
 let tlist_pyret_settings = 'pyret;g:global;f:function;h:helper;d:data;t:test'
-
 let tlist_tex_settings   = 'latex;s:sections;g:graphics;l:labels'
 let tlist_make_settings  = 'make;m:makros;t:targets'
