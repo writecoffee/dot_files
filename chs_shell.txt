@@ -1,13 +1,15 @@
 
-** Find file(s) under DIR with PATTERN matched
+** Find file(s) under DIR with PATTERN matched.
 
    $ ls DIR | grep PATTERN 
 
-** Find file(s) under DIR recursively with PATTERN matched
+** Find file(s) under DIR recursively with PATTERN matched.
 
    $ find DIR -file PATTERN
 
-** List all files under DIR showing size, modification date, and etc
+   $ ack-grep -ai PATTERN [DIR]
+
+** List all files under DIR showing size, modification date, and etc.
 
    $ find DIR -type f -ls
 
@@ -21,5 +23,26 @@
 
 ** Replace all occurrence of PATTERN in files greped out.
 
-   $ grep -rl PATTERN DIR | xargs sed -i 's/OLD/NEW/g'
+   $ grep -rl PATTERN DIR | xargs sed -i 's/PATTERN/REPLACEMENT/g'
 
+   $ ack-grep -l PATTERN | xargs perl -pi -E 's/PATTERN/REPLACEMENT/g'
+
+** Tarred file transfer.
+   
+   $ tar zcf - stuff | ssh USER@SERVER 'tar zxf -'
+   
+   $ tar zcf - stuff | ssh USER@SERVER 'tar zxf --directory=/home/$USER/OTHER_DIR -'
+
+   $ ssh USER@SERVER 'tar zcf - FILES' | tar zxf -
+
+** Offsite backups.
+
+   # Transfer a bunch of files and leave them as a tarball on the server rather as a bunch of files.
+
+   $ tar zcf - FILES | ssh USER@SERVER 'cat - > FILES.tar.gz'
+
+   $ tar zcf - FILES | gpg -e | ssh USER@SERVER 'cat - > FILES.tar.gz.gpg'
+
+** Run a local script remotely.
+
+   $ ssh USER@SERVER 'bash -s' < SCRIPT
