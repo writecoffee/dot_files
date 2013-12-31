@@ -115,3 +115,51 @@ ASSEMBLY
    (gdb) print *(int *) ($rsp + 8)
    (gdb) print (char *) 0xbfff890
    (gdb) x/w 0xbffff890
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+RESTORE THE STACK
+
+If calling stack was corrupted, gdb would not be able to interpret the return address
+of functions, and hence we can not expand the calling stack in gdb. However, sometimes
+the calling stack is just partically damaged, RSP is still storing the return address,
+we can manually restore it.
+
+   (gdb) set logging on
+   (gdb) x /2000a $rsp
+
+   0x426cb890: 0x0 0x4
+   0x426cb8a0: 0x426cb8c0 0x100
+   0x426cb8b0: 0x3e8 0x552f59 <_ZN5tbnet16EPollSocketEvent9getEventsEiPNS_7IOEventEi+41>
+   0x426cb8c0: 0x1823c8a000000011 0x0
+   0x426cb8d0: 0x0 0x0
+   0x426cb8e0: 0x0 0x0
+   ...
+
+Symbols like <_ZN5tbnet16EPollSocketEvent9getEventsEiPNS_7IOEventEi+41> look valid for 
+restoring calling stack before core dump.
+
+Be careful about situations where (1) binary is out-of-date; (2) ulimit is too small, core
+dump info is incomplete.
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+EXECUTE USER SCRIPT
+
+define dumpGetParam
+set $cell_list = ($arg0)
+set $cell_num = ($arg1)
+set $cell_idx = (0)
+while ($cell_idx < $cell_num)
+  printf "cell_idx:%d, table_id:%llu, column_id:%llu\\n", $cell_idx,
+    $cell_list[$cell_idx].table_id_, $cell_list[$cell_idx].column_id
+  set $cell_idx = $cell_idx + 1
+end
+end
+
+The first argument $arg0 is the address of cell array, the second argument $arg1 is the
+size of the array, the functionality is to print all info regarding "cell".
+
+After in gdb we "source" the script from plain text file, we can use user command
+"dumpGetParam".
