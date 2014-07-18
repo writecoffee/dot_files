@@ -431,9 +431,9 @@ nnoremap <F4>           :set hlsearch! hlsearch?<CR>
 nnoremap ,w             :cclose<CR>
 nnoremap ,r             :mks!<CR>
 
-if has("autocmd")
-  filetype indent on
-endif
+"if has("autocmd")
+"  filetype indent on
+"endif
 
 au filetype python setlocal expandtab shiftwidth=4 softtabstop=4
 
@@ -441,6 +441,11 @@ au BufReadPost *.arr set filetype=pyret
 au BufReadPost *.arr set shiftwidth=2
 au BufReadPost *.arr set tabstop=2
 au BufReadPost *.arr set softtabstop=2
+
+au BufReadPost *.java set filetype=java
+au BufReadPost *.java set shiftwidth=4
+au BufReadPost *.java set tabstop=4
+au BufReadPost *.java set softtabstop=4
 
 let tlist_pyret_settings = 'pyret;g:global;f:function;h:helper;d:data;t:test'
 let tlist_tex_settings   = 'latex;s:sections;g:graphics;l:labels'

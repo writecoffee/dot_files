@@ -69,6 +69,8 @@ setenvvar TEXMACS_PATH     '$HOME/TeXmacs/'
 setenvvar PATH '/local/bin:/cfarm/bin:/usr/local/bin:/bin:/usr/bin:/usr/X11R6/bin:/usr/games:/contrib/bin:$TEXMACS_PATH/bin:$HOME/Dropbox/cs167/weenix'
 
 setenvvar MANPATH '/local/share/man:/usr/local/man:/usr/share/man:/usr/X11R6/man:/usr/local/share/man'
+setenvvar SSH 'silao_xu@ssh.cs.brown.edu'
+setenvvar P 'silao_xu@ssh.cs.brown.edu:~/printing_server'
 
 # Add your personal bin and man directories (if they exist) to your path.
 pathprependifdir PATH             "$HOME/bin"
@@ -98,6 +100,7 @@ shellcmd       ls              'ls -F --color=auto'
 shellcmd    acroread        'acroread 1>/dev/null 2>/dev/null'
 shellcmd    google-chrome   'google-chrome 1>/dev/null 2>/dev/null'
 shellcmd    eclipse         'eclipse 1>/dev/null 2>/dev/null'
+shellcmd    eclipse-luna    'eclipse-luna 1>/dev/null 2>/dev/null'
 shellcmd    xmind           'xmind 1>/dev/null 2>/dev/null'
 shellcmd    texmacs         'texmacs 1>/dev/null 2>/dev/null'
 shellcmd    less            'less -FMRiX'
