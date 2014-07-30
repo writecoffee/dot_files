@@ -66,7 +66,7 @@ setenvvar TEXMACS_PATH     '$HOME/TeXmacs/'
 
 # Add some important default paths. If you don't know what one of these is for,
 # you should probably leave it alone.
-setenvvar PATH '/local/bin:/cfarm/bin:/usr/local/bin:/bin:/usr/bin:/usr/X11R6/bin:/usr/games:/contrib/bin:$TEXMACS_PATH/bin:$HOME/Dropbox/cs167/weenix'
+setenvvar PATH '/local/bin:/cfarm/bin:/usr/local/bin:/bin:/usr/bin:/usr/X11R6/bin:/usr/games:/contrib/bin:$TEXMACS_PATH/bin:$HOME/Dropbox/cs167/weenix:/usr/local/smlnj-110.75/bin'
 
 setenvvar MANPATH '/local/share/man:/usr/local/man:/usr/share/man:/usr/X11R6/man:/usr/local/share/man'
 setenvvar SSH 'silao_xu@ssh.cs.brown.edu'
