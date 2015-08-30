@@ -57,20 +57,25 @@ umask 077
 setenvvar        PAGER            less
 setenvvar        LESS             -eirMX
 setenvvar        EDITOR           vim
-setenvifnot      VISUAL           gvim
+setenvifnot      VISUAL           vim
 
-setenvvar TEXMACS_PATH     '$HOME/TeXmacs/'
+setenvvar        TEXMACS_PATH     '$HOME/TeXmacs/'
+setenvvar        TOMCAT_HOME      '/Library/Tomcat/'
 #
 # Paths
 #
 
 # Add some important default paths. If you don't know what one of these is for,
 # you should probably leave it alone.
-setenvvar PATH '/local/bin:/cfarm/bin:/usr/local/bin:/bin:/usr/bin:/usr/X11R6/bin:/usr/games:/contrib/bin:$TEXMACS_PATH/bin:$HOME/Dropbox/cs167/weenix:/usr/local/smlnj-110.75/bin'
-
 setenvvar MANPATH '/local/share/man:/usr/local/man:/usr/share/man:/usr/X11R6/man:/usr/local/share/man'
 setenvvar SSH 'silao_xu@ssh.cs.brown.edu'
 setenvvar P 'silao_xu@ssh.cs.brown.edu:~/printing_server'
+
+setenvvar GOPATH '~/golang'
+setenvvar GOROOT '/usr/local/go'
+setenvvar GOBIN '$GOROOT/bin:$GOPATH/bin'
+
+setenvvar PATH '/usr/sbin:/local/bin:/cfarm/bin:/usr/local/bin:/bin:/usr/bin:/usr/X11R6/bin:/usr/games:/contrib/bin:/usr/local/smlnj/bin:$GOPATH:$GOROOT/bin'
 
 # Add your personal bin and man directories (if they exist) to your path.
 pathprependifdir PATH             "$HOME/bin"
@@ -96,7 +101,7 @@ pathprependifdir MANPATH          "$HOME/man"
 shellcmd       rm              'rm -i'
 shellcmd       cp              'cp -i'
 shellcmd       mv              'mv -i'
-shellcmd       ls              'ls -F --color=auto'
+shellcmd       l               'ls -FGl'
 shellcmd    acroread        'acroread 1>/dev/null 2>/dev/null'
 shellcmd    google-chrome   'google-chrome 1>/dev/null 2>/dev/null'
 shellcmd    eclipse         'eclipse 1>/dev/null 2>/dev/null'
